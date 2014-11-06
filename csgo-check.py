@@ -67,7 +67,7 @@ class SteamUser:
     # Debugging function
     def debug(self, msg):
         if DEBUG:
-            print msg
+            print msg.encode('utf-8', errors='replace')
     
     # Ripped this off some Stack Overflow answer. Seems to work.
     def SteamID2CommunityID(self, steam_id):
@@ -166,7 +166,7 @@ class SteamUser:
             self.games_owned = result['response']['game_count']
             for game in result['response']['games']:
                 # Playtime is reported in minutes; we'll convert it to hours. Rounded to the nearest hour is good enough.
-                # appid 730 is CS:GO, 240 is CS:S, 10 is CS 1.x. 80 is CS:CZ. :'(
+                # appid 730 is CS:GO, 240 is CS:S, 10 is CS 1.6. 80 is CS:CZ. :'(
                 game_total = int(round(game['playtime_forever'] / 60, 0))
                 if (game['appid'] == 730):
                     self.csgo_time_total = game_total
@@ -179,6 +179,8 @@ class SteamUser:
 page_1 = """<html>
 <head>
 <title>Smurf Nancy Drew</title>
+<meta charset="utf-8">
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 </head>
 <body>
 Copy status output here:<br/>
@@ -242,7 +244,7 @@ class NancyDrewHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         
         # Creatin' tables like it's 1995.
         response += "<table>\n"
-        response += "<tr><td></td><td>Player</td><td>Public profile?</td><td>Steam acct. created</td><td>Friends</td><td>Total CSGO hours</td><td>CSGO last 2 wks</td><td>CSS hours</td><td>CS 1.x hours</td><td>Games owned</td><td>VAC bans</td></tr>\n"
+        response += "<tr><td></td><td>Player</td><td>Public profile?</td><td>Steam acct. created</td><td>Friends</td><td>Total CSGO hours</td><td>CSGO last 2 wks</td><td>CSS hours</td><td>CS 1.6 hours</td><td>Games owned</td><td>VAC bans</td></tr>\n"
         for steam_user in steam_users:
             response += "<tr>"
             
@@ -265,7 +267,7 @@ class NancyDrewHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 response += "<td><p style='color:#FF9090'>(private)</p></td>" # CS:GO total
                 response += "<td><p style='color:#FF9090'>(private)</p></td>" # CS:GO last two weeks
                 response += "<td><p style='color:#FF9090'>(private)</p></td>" # CS:S total
-                response += "<td><p style='color:#FF9090'>(private)</p></td>" # CS 1.x total
+                response += "<td><p style='color:#FF9090'>(private)</p></td>" # CS 1.6 total
                 response += "<td><p style='color:#FF9090'>(private)</p></td>" # games owned
             else:
                 # Profile is public, so proudly display a green check mark.
@@ -308,7 +310,7 @@ class NancyDrewHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         self.send_header('Content-type', 'text/html')
         self.end_headers()
         response += page_3
-        self.wfile.write(response)
+        self.wfile.write(response.encode('utf-8'))
         return
 
 # Run the server until the keyboard interrupt is received.
