@@ -1,0 +1,24 @@
+Instructions
+0) Install Python 2.x for your operating system: https://www.python.org/downloads/
+
+1) Download csgo-check.py to wherever you want and open a command prompt there.
+
+2) Customize the program by opening it in a text editor such as Notepad.
+
+- Get an API key from http://steamcommunity.com/dev/apikey . Enter it between the quotation marks at API_KEY = "".
+
+- Choose the port the program should use and enter that for PORT. By default it's 12345, but if something else is using that you can change it to any unused port from 1025 to 65535.
+
+- If you regularly play with the same people, collect their Steam IDs and enter them in the FRIENDS section as indicated. These IDs will not be checked when you use the program.
+
+- If you feel like seeing a bunch of messages in the console, you can change DEBUG to True.
+
+3) In the command prompt, run csgo-check.py.
+
+- Windows: If Python is in your system path, you can just run "python csgo-check.py". Otherwise you'll have to do something like "C:\python27\python.exe csgo-check.py".
+
+- Linux: You probably know what you're doing already.
+
+- Mac: I actually don't know how to do this on a Mac, or if you can even run CS on a Mac.
+
+4) Browse to http://127.0.0.1:12345 (or whatever port you chose). In CS:GO, type 'status' in the console and just copy the entire output. Paste it into the box in your browser and submit. Enjoy.
