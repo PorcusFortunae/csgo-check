@@ -5,10 +5,10 @@ Find smurves, premades, and general info about CS:GO players
 
 csgo-check runs a local HTTP server to render a simple web page where you can enter the output of 'status' from the CS:GO console and find information about the players.
 
-Download: https://csgo-check.googlecode.com/git/csgo-check.py
+Download: https://raw.githubusercontent.com/PorcusFortunae/csgo-check/master/csgo-check.py
 
 
-Instructions: https://code.google.com/p/csgo-check/wiki/Instructions
+Instructions: https://raw.githubusercontent.com/PorcusFortunae/csgo-check/master/instructions.txt
 
 Features:
 
