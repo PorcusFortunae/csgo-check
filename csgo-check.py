@@ -11,6 +11,7 @@ import urllib2
 # https://developer.valvesoftware.com/wiki/Steam_Web_API
 
 # API key from http://steamcommunity.com/dev/apikey
+
 API_KEY = "YOUR_KEY_HERE"
 
 # Port to run the server on
@@ -19,6 +20,27 @@ PORT = 12345
 # Dictionary of our steam IDs for auto-filtering. Don't really need the username for each but it's nice.
 # Collect your own Steam ID and those of your friends and enter them here, with the STEAM_X:X:XXXXXX format
 # in the first set of quotes, and a name for that ID in the second set of quotes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 FRIENDS = {"STEAM_X:X:XXXXXXX" : "me",
            "STEAM_X:X:XXXXXXX" : "arbitrary nickname for this ID, doesn't have to be username",
            "STEAM_X:X:XXXXXXX" : "dickbutt",
@@ -209,6 +231,7 @@ class NancyDrewHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         self.send_header('Content-type', 'text/html')
         self.end_headers()
         response = page_1
+
         response += page_2
         response += page_3
         self.wfile.write(response)
@@ -224,7 +247,7 @@ class NancyDrewHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                     })
         response = page_1
         # Re-render the console status input in case you want to run it again or something
-        response += form['status'].value
+        response += form['status'].value.decode('utf-8')
         response += page_2
         # Do stuff if data has been POSTed to the form.
         # A list for the SteamUser objects.
@@ -249,6 +272,7 @@ class NancyDrewHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             response += "<tr>"
             
             # Avatar, linked to profile URL.
+
             response += "<td><a href='" + steam_user.profileurl + "'><img src='" + steam_user.avatar + "'></a></td>"
 
             # Name, linked to profile URL.
